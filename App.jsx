@@ -44,11 +44,6 @@ export default function BestSolutionPortfolio() {
           'International technical partnerships'
         ]
       },
-      partners: {
-        title: 'Our Partners & Clients',
-        subtitle: 'Trusted by leading organizations across Mozambique and South Africa',
-        footer: 'And many more leading organizations in mining, manufacturing, energy, and infrastructure sectors'
-      },
       watericon: {
         badge: 'Strategic Partnership',
         title: 'Watericon Industrial Water Treatment',
@@ -129,11 +124,6 @@ export default function BestSolutionPortfolio() {
           'Parcerias técnicas internacionais'
         ]
       },
-      partners: {
-        title: 'Nossos Parceiros e Clientes',
-        subtitle: 'Confiança de organizações líderes em Moçambique e África do Sul',
-        footer: 'E muitas outras organizações líderes nos setores de mineração, manufatura, energia e infraestrutura'
-      },
       watericon: {
         badge: 'Parceria Estratégica',
         title: 'Watericon Tratamento Industrial de Água',
@@ -206,6 +196,14 @@ export default function BestSolutionPortfolio() {
     };
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
+  }, [language]);
+
+  // Atualizar a divisão selecionada quando o idioma mudar
+  useEffect(() => {
+    if (selectedDivision) {
+      const updatedDivision = getDivisions().find(d => d.id === selectedDivision.id);
+      setSelectedDivision(updatedDivision);
+    }
   }, [language]);
 
   const navigateToDivision = (division) => {
@@ -405,9 +403,9 @@ export default function BestSolutionPortfolio() {
         "Gestão de segurança de contratados"
       ],
       gallery: [
-        { url: 'https://www.diarioeconomico.co.mz/wp-content/uploads/2023/09/Higiene-e-Seguranca-no-trabalho_Easy-Resize.com_.jpg' },
-        { url: 'https://www.connapa.com.br/static/img/large/db3dbc4802f18a115c7854d19fb1ae7d.jpg' },
-        { url: 'https://100contratempos.pt/wp-content/uploads/2020/08/higiene_seguranca_trab-1024x684.jpeg' }
+        { url: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800' },
+        { url: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800' },
+        { url: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800' }
       ]
     }
   ];
@@ -503,12 +501,6 @@ export default function BestSolutionPortfolio() {
                   <p className="text-xs text-slate-600">Industrial Water Treatment</p>
                 </div>
               </div>
-              <button
-                onClick={() => setLanguage(language === 'en' ? 'pt' : 'en')}
-                className="px-4 py-2 rounded-lg bg-blue-100 text-blue-700 hover:bg-blue-200 transition-colors font-medium"
-              >
-                {language === 'en' ? 'PT' : 'EN'}
-              </button>
             </div>
           </div>
         </nav>
@@ -654,12 +646,6 @@ export default function BestSolutionPortfolio() {
                   <p className="text-xs text-slate-600">Engineering & Consulting</p>
                 </div>
               </div>
-              <button
-                onClick={() => setLanguage(language === 'en' ? 'pt' : 'en')}
-                className="px-4 py-2 rounded-lg bg-blue-100 text-blue-700 hover:bg-blue-200 transition-colors font-medium"
-              >
-                {language === 'en' ? 'PT' : 'EN'}
-              </button>
             </div>
           </div>
         </nav>
@@ -898,33 +884,6 @@ export default function BestSolutionPortfolio() {
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-slate-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">{t.partners.title}</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-cyan-500 mx-auto mb-4"></div>
-            <p className="text-slate-600 text-lg">{t.partners.subtitle}</p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
-            {[
-              { src: "https://upload.wikimedia.org/wikipedia/commons/e/e7/Toyota.svg", alt: "Toyota", h: "h-12" },
-              { src: "https://upload.wikimedia.org/wikipedia/en/thumb/1/1d/Sasol_Limited_-_Logo.svg/2560px-Sasol_Limited_-_Logo.svg.png", alt: "Sasol", h: "h-12" },
-              { src: "https://upload.wikimedia.org/wikipedia/en/a/a6/Ceres_Fruit_Juices_Logo.jpg", alt: "Ceres", h: "h-12" },
-              { src: "https://upload.wikimedia.org/wikipedia/commons/4/48/Clover_logo.png", alt: "Clover", h: "h-12" },
-              { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Coca-Cola_logo.svg/2560px-Coca-Cola_logo.svg.png", alt: "Coca-Cola", h: "h-16" },
-              { src: "https://www.bcm.org.bw/wp-content/uploads/2017/05/ael_mining_logo.jpg", alt: "AEL", h: "h-12" }
-            ].map((logo, i) => (
-              <div key={i} className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex items-center justify-center">
-                <img src={logo.src} alt={logo.alt} className={`${logo.h} w-auto object-contain`} />
-              </div>
-            ))}
-          </div>
-          <div className="mt-12 text-center">
-            <p className="text-slate-600 italic">{t.partners.footer}</p>
-          </div>
-        </div>
-      </section>
-
       <section className="py-20 px-4 bg-gradient-to-br from-cyan-500 via-blue-600 to-teal-500">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
@@ -990,9 +949,9 @@ export default function BestSolutionPortfolio() {
                   <strong>{t.contact.address}:</strong> Rua da Resistência n°275, Segundo Andar
                 </p>
                 <div className="space-y-4">
-                  <a href="mailto:bestconsulting21@gmail.com" className="flex items-center gap-3 text-slate-700 hover:text-blue-600 transition-colors">
+                  <a href="mailto:info@bestsolution.co.mz" className="flex items-center gap-3 text-slate-700 hover:text-blue-600 transition-colors">
                     <Mail size={20} />
-                    <span>geral@bestsolution.co.mz</span>
+                    <span>info@bestsolution.co.mz</span>
                   </a>
                   <a href="tel:+258866281547" className="flex items-center gap-3 text-slate-700 hover:text-blue-600 transition-colors">
                     <Phone size={20} />
