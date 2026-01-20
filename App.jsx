@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Mail, Phone, ChevronRight, Award, Target, Settings, Droplet, Factory, Beaker, Globe, MapPin, Check, Shield, Zap, Package, Wrench } from 'lucide-react';
+import { Menu, X, Mail, Phone, ChevronRight, Award, Target, Settings, Droplet, Factory, Beaker, Globe, MapPin, Check, Shield, Zap, Package, Wrench, FileCheck } from 'lucide-react';
 import logo from './assets/bestsolution-logo.png';
 
 export default function BestSolutionPortfolio() {
@@ -33,6 +33,10 @@ export default function BestSolutionPortfolio() {
         subtitle: 'Five specialized divisions delivering comprehensive engineering solutions across industry and infrastructure',
         keyServices: 'Key Services:',
         learnMore: 'Learn More'
+      },
+      certifications: {
+        title: 'Certifications & Standards',
+        subtitle: 'Committed to international quality, safety, and environmental management standards'
       },
       why: {
         title: 'Why Best Solution?',
@@ -114,6 +118,10 @@ export default function BestSolutionPortfolio() {
         keyServices: 'Serviços Principais:',
         learnMore: 'Saber Mais'
       },
+      certifications: {
+        title: 'Certificações e Normas',
+        subtitle: 'Comprometidos com padrões internacionais de qualidade, segurança e gestão ambiental'
+      },
       why: {
         title: 'Porquê Best Solution?',
         items: [
@@ -174,6 +182,33 @@ export default function BestSolutionPortfolio() {
 
   const t = translations[language];
 
+  const certifications = [
+    {
+      code: 'ISO 45001:2018',
+      name: language === 'en' ? 'Occupational Health and Safety Management System' : 'Sistema de Gestão de Saúde e Segurança Ocupacional',
+      icon: Shield,
+      color: 'from-orange-500 to-red-500'
+    },
+    {
+      code: 'ISO 9001:2015',
+      name: language === 'en' ? 'Quality Management System Awareness' : 'Consciência do Sistema de Gestão da Qualidade',
+      icon: Award,
+      color: 'from-blue-500 to-cyan-500'
+    },
+    {
+      code: 'ISO 14001:2015',
+      name: language === 'en' ? 'Environmental Management System Awareness' : 'Consciência do Sistema de Gestão Ambiental',
+      icon: Droplet,
+      color: 'from-green-500 to-emerald-500'
+    },
+    {
+      code: 'ISO 50001:2018',
+      name: language === 'en' ? 'Energy Management System Awareness' : 'Consciência do Sistema de Gestão de Energia',
+      icon: Zap,
+      color: 'from-yellow-500 to-amber-500'
+    }
+  ];
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
@@ -220,7 +255,7 @@ export default function BestSolutionPortfolio() {
       icon: Settings,
       color: 'from-blue-600 to-cyan-500',
       tagline: language === 'en' ? "Keeping critical assets operating safely and efficiently" : "Mantendo ativos críticos operando com segurança e eficiência",
-      description: language === 'en' 
+      description: language === 'en'
         ? "We provide comprehensive industrial maintenance and facility management solutions to ensure the reliability, safety, and efficiency of critical infrastructure and assets."
         : "Fornecemos soluções abrangentes de manutenção industrial e gestão de instalações para garantir a confiabilidade, segurança e eficiência de infraestruturas e ativos críticos.",
       services: language === 'en' ? [
@@ -821,7 +856,30 @@ export default function BestSolutionPortfolio() {
         </div>
       </section>
 
-      <section id="services" className="py-20 px-4 bg-slate-50">
+      <section className="py-20 px-4 bg-slate-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-slate-900 mb-4">{t.certifications.title}</h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-cyan-500 mx-auto mb-4"></div>
+            <p className="text-slate-600 text-lg max-w-3xl mx-auto">{t.certifications.subtitle}</p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {certifications.map((cert, idx) => (
+              <div key={idx} className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                <div className={`w-16 h-16 bg-gradient-to-br ${cert.color} rounded-lg flex items-center justify-center mx-auto mb-4`}>
+                  <cert.icon className="text-white" size={32} />
+                </div>
+                <div className="text-center">
+                  <h3 className="font-bold text-slate-900 text-lg mb-2">{cert.code}</h3>
+                  <p className="text-slate-600 text-sm">{cert.name}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="services" className="py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-slate-900 mb-4">{t.services.title}</h2>
@@ -865,7 +923,7 @@ export default function BestSolutionPortfolio() {
         </div>
       </section>
 
-      <section className="py-20 px-4">
+      <section className="py-20 px-4 bg-slate-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-slate-900 mb-4">{t.why.title}</h2>
