@@ -1004,7 +1004,7 @@ export default function BestSolutionPortfolio() {
                 <h3 className="text-2xl font-bold text-slate-900 mb-3">Best Solution Engineering & Consulting</h3>
                 <p className="text-slate-600 mb-2">{t.contact.location}</p>
                 <p className="text-slate-600 mb-6">
-                  <strong>{t.contact.address}:</strong> Rua da Resistência n°275, Segundo Andar
+                  <strong>{t.contact.address}:</strong> Bairro Polana Cimento A, Avenida 24 de Julho n°797
                 </p>
                 <div className="space-y-4">
                   <a href="mailto:info@bestsolution.co.mz" className="flex items-center gap-3 text-slate-700 hover:text-blue-600 transition-colors">
